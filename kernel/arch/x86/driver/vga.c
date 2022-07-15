@@ -1,4 +1,5 @@
 #include <kernel/vga.h>
+#include <x86/ports.h>
 
 #define NUM_COLS 80
 #define NUM_ROWS 25
@@ -64,6 +65,8 @@ void printc(char character) {
     };
 
     col++;
+
+    update_cursor(col, row);
 }
 
 void print(char* str) {
@@ -78,4 +81,26 @@ void print(char* str) {
 
 void vga_set_color(uint8_t foreground, uint8_t background) {
     color = foreground | background << 4;
+}
+
+void enable_cursor(uint8_t cursor_start, uint8_t cursor_end) {
+	outb(0x3D4, 0x0A);
+	outb(0x3D5, (inb(0x3D5) & 0xC0) | cursor_start);
+ 
+	outb(0x3D4, 0x0B);
+	outb(0x3D5, (inb(0x3D5) & 0xE0) | cursor_end);
+}
+
+void disable_cursor() {
+	outb(0x3D4, 0x0A);
+	outb(0x3D5, 0x20);
+}
+
+void update_cursor(int x, int y) {
+	uint16_t pos = y * NUM_COLS + x;
+ 
+	outb(0x3D4, 0x0F);
+	outb(0x3D5, (uint8_t) (pos & 0xFF));
+	outb(0x3D4, 0x0E);
+	outb(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
 }
