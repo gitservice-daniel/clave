@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+.vscode
+
+dist 
+iso_root 
+kernel/build 
+kernel/dist
