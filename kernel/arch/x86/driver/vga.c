@@ -17,7 +17,7 @@ uint8_t color = VGA_COLOR_LIGHT_GRAY | VGA_COLOR_BLACK << 4;
 
 void clear_row(size_t row) {
     struct Character empty = (struct Character) {
-        color: ' ',
+        character: ' ',
         color: color,
     };
 
@@ -46,6 +46,8 @@ void newline() {
             buffer[col + NUM_COLS * (row - 1)] = character;
         }
     }
+
+    clear_row(NUM_ROWS - 1);
 }
 
 void printc(char character) {
@@ -54,7 +56,7 @@ void printc(char character) {
         return;
     }
 
-    if (col > NUM_COLS) newline();
+    if (col >= NUM_COLS) newline();
 
     buffer[col + NUM_COLS * row] = (struct Character) {
         character: (uint8_t) character,
