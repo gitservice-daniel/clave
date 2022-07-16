@@ -7,5 +7,5 @@ void kmain(void) {
 
     prepare_interrupts();
 
-    print("Hello World")
+    print("Hello World");
 }

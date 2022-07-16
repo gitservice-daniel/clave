@@ -1,8 +1,7 @@
 #include <kernel/string.h>
 #include <stdint.h>
 
-
-void int_to_ascii(int n, char str[]) {
+void itoa(int n, char str[]) {
     int i, sign;
     if ((sign = n) < 0) n = -n;
     i = 0;
@@ -16,7 +15,7 @@ void int_to_ascii(int n, char str[]) {
     reverse(str);
 }
 
-void hex_to_ascii(int n, char str[]) {
+void htoa(int n, char str[]) {
     append(str, '0');
     append(str, 'x');
     char zeros = 0;

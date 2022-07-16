@@ -8,4 +8,4 @@ build-x86:
 	@ rm -rf iso_root
 
 clean:
-	rm -rf dist iso_root kernel/build kernel/dist
+	@ rm -rf dist iso_root kernel/build kernel/dist
