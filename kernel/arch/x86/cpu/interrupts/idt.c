@@ -1,4 +1,5 @@
 #include <x86/idt.h>
+#include <x86/pic.h>
 #include <stdbool.h>
 
 static idt_entry_t idt[MAX_IDT_ENTRIES];
@@ -31,6 +32,8 @@ void idt_init(void) {
         idt_set_descriptor(vector, isr_stub_table[vector], 0x8e);
         vectors[vector] = true;
     }
+
+    pic_remap(PIC1, PIC2);
 
     asm volatile("lidt %0" : : "m"(idtr));
     asm volatile("sti");
