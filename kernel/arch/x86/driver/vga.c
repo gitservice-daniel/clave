@@ -1,4 +1,5 @@
 #include <kernel/vga.h>
+#include <kernel/string.h>
 #include <x86/ports.h>
 
 #define NUM_COLS 80
@@ -67,6 +68,26 @@ void printc(char character) {
     col++;
 
     update_cursor(col, row);
+}
+
+void print_int(int number) {
+    char str[1024];
+    itoa(number, str);
+    print(str);
+
+    for (int i = 0; i < strlen(str); i++) {
+        str[i] = '\0';
+    }
+}
+
+void print_hex(int number) {
+    char str[1024];
+    htoa(number, str);
+    print(str);
+
+    for (int i = 0; i < strlen(str); i++) {
+        str[i] = '\0';
+    }
 }
 
 void print(char* str) {
