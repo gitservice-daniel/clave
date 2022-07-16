@@ -46,7 +46,7 @@ char* exception_name[] = {
  *  4 = Interrupt (Is just a Interrupt)
  *  5 = Reserved (No information)
  */
-int* exception_type[] = {
+int exception_type[] = {
     0, 0, 4, 1, 1, 0, 
     0, 0, 2, 0, 0, 0, 
     0, 0, 0, 5, 0, 0, 
