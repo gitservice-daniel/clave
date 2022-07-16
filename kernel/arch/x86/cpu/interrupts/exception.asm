@@ -1,11 +1,13 @@
 %macro isr_err_stub 1
 isr_stub_%+%1:
+    mov eax, %1
     call exception_handler
     iret 
 %endmacro
 
 %macro isr_no_err_stub 1
 isr_stub_%+%1:
+    mov eax, %1
     call exception_handler
     iret
 %endmacro

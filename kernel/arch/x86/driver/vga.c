@@ -32,6 +32,11 @@ void vga_clear() {
     for (size_t i = 0; i < NUM_COLS; i++) {
         clear_row(i);
     }
+
+    col = 0;
+    row = 0;
+
+    update_cursor(col, row);
 }
 
 void newline() {
