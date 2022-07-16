@@ -105,6 +105,62 @@ void print(char* str) {
     }
 }
 
+void printf(const char* fmt, ...) {
+
+	va_list args;
+	char buf[1024] = {0};
+	va_start(args, fmt);
+
+    char* str;
+    char c;
+    int n;
+
+    int i = 0;
+
+	while (fmt[i] != '\0') {
+        if (fmt[i] == '%') {
+            i++;
+            switch (fmt[i]) {
+                case 's':
+                    str = va_arg(args, char*);
+                    print(str);
+                    i++;
+                    break;
+                case 'c':
+                    c = va_arg(args, int);
+                    printc(c);
+                    i++;
+                    break;
+                case 'i':
+                case 'd':
+                    n = va_arg(args, int);
+                    print_int(n);
+                    i++;
+                    break;
+                case 'x':
+                case 'p':
+                    n = va_arg(args, int);
+                    print_hex(n);
+                    i++;
+                    break;
+                case '%':
+                    printc('%');
+                    i++;
+                    break;
+                default:
+                    i++;
+                    break;
+            }
+        } else {
+            printc(fmt[i]);
+            i++;
+        }
+    }
+
+	va_end(args);
+    print(buf);
+}
+
 void vga_set_color(uint8_t foreground, uint8_t background) {
     color = foreground | background << 4;
 }

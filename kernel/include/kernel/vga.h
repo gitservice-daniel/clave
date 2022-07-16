@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdarg.h>
 
 enum {
     VGA_COLOR_BLACK = 0,
@@ -27,6 +28,7 @@ void vga_set_color(uint8_t foreground, uint8_t background);
 
 void printc(char character);
 void print(char* str);
+void printf(const char* fmt, ...);
 void print_int(int number);
 void print_hex(int number);
 
