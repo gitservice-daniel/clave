@@ -13,7 +13,7 @@
 #define IRQ5  37
 #define IRQ6  38
 #define IRQ7  39
-#define IRQ6  40
+#define IRQ8  40
 #define IRQ9  41
 #define IRQ10 42
 #define IRQ11 43
