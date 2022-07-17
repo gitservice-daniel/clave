@@ -4,6 +4,8 @@
 static idt_entry_t idt[MAX_IDT_ENTRIES];
 static idtr_t idtr;
 
+static bool vectors[MAX_IDT_ENTRIES];
+
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags) {
     idt_entry_t* descriptor = &idt[vector];
 
@@ -12,6 +14,8 @@ void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags) {
     descriptor->attributes = flags;
     descriptor->isr_high = (uint32_t) isr >> 16;
     descriptor->reserved = 0;
+
+    vectors[vector] = true;
 }
 
 void idt_free_descriptor(uint8_t vector) {

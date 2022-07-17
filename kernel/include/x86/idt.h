@@ -18,8 +18,6 @@ typedef struct {
     uint32_t base;
 } __attribute__((packed)) idtr_t;
 
-static bool vectors[MAX_IDT_ENTRIES];
-
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags);
 void idt_free_descriptor(uint8_t vector);
 

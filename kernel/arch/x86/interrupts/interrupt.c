@@ -1,5 +1,6 @@
 #include <kernel/interrupt.h>
 #include <x86/isr.h>
+#include <x86/idt.h>
 #include <x86/syscall.h>
 #include <x86/pic.h>
 

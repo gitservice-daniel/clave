@@ -81,6 +81,5 @@ void exception_handler(void) {
 void install_cpu_exceptions(void) {
     for (uint8_t vector = 0; vector < 32; vector++) {
         idt_set_descriptor(vector, isr_stub_table[vector], 0x8e);
-        vectors[vector] = true;
     }
 }
