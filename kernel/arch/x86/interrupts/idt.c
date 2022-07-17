@@ -1,6 +1,9 @@
 #include <x86/idt.h>
 #include <stdbool.h>
 
+static idt_entry_t idt[MAX_IDT_ENTRIES];
+static idtr_t idtr;
+
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags) {
     idt_entry_t* descriptor = &idt[vector];
 
