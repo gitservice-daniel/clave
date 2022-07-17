@@ -11,7 +11,7 @@ Clave is an open source operating system that focuses on security and compatibil
 
 ## Building
 
-For building Clave you need to have Docker and Qemu installed on your system, read the Documentation at `docs/building`. Otherwise you need to have a Toolchain installed with following Progams: `GCC Cross-Compiler, Binutils, NASM, GNU Make, GNU Coreutils, Git`.
+For building Clave you need to have Docker and Qemu installed on your system, read the Documentation at [`docs/building`](docs/building). Otherwise you need to have a Toolchain installed with following Progams: `GCC Cross-Compiler, Binutils, NASM, GNU Make, GNU Coreutils, Git`.
 
 ## Contributing
 
