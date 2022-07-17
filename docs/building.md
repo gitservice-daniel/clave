@@ -2,7 +2,7 @@
 
 ## Preperation
 
-You need to have [Docker]() and [Qemu]() installed on your System. (Note: If you working at Windows don't forget to add Qemu to your Path. See this [Tutorial](). Then clone with Git this Project, or alternatively you can download this Project trough GitHub. When you have everything done go to the next step.
+You need to have [Docker](https://www.docker.com/products/docker-desktop/) and [Qemu](https://www.qemu.org/download/) installed on your System. (Note: If you working at Windows don't forget to add Qemu to your Path. See this [Tutorial]([https://www.youtube.com/watch?v=al1cnTjeayk](https://www.youtube.com/watch?v=SHMUMeEzSS0)). Then clone with Git this Project, or alternatively you can download this Project trough GitHub. When you have everything done go to the next step.
 
 ## Building Docker Container
 
