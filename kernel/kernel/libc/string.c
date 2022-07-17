@@ -69,3 +69,45 @@ int strcmp(char s1[], char s2[]) {
     }
     return s1[i] - s2[i];
 }
+
+void strcpy(char* dest, const char* src) {
+    do {
+        *dest++ = *src++;
+    } while (*src != 0);
+}
+
+int strnlen(const char* str, int len) {
+    int i;
+    for (i = 0; i < len; i++) {
+        if (str[i] == '\0') break;
+    }
+    return i;
+}
+
+char* strcat(char* dest, const char* src) {
+    char* d = dest;
+
+    while (*d) {
+        d++;
+    }
+
+    while (*src) {
+        *d++ = *src++;
+    }
+
+    *d = 0;
+    return dest;
+}
+
+char* strchr(const char* str, int chr) {
+    if (str == NULL) return NULL;
+
+    while (*str) {
+        if (*str == (char) chr) {
+            return (char*) str;
+        }
+        str++;
+    }
+
+    return NULL;
+}
