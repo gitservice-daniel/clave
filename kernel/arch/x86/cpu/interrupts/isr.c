@@ -51,7 +51,7 @@ int exception_type[] = {
     0, 0, 2, 0, 0, 0, 
     0, 0, 0, 5, 0, 0, 
     2, 0, 0, 0, 5, 0, 
-    0, 0, 5, 5, 4,
+    0, 0, 5, 5, 4, 5,
 };
 
 void exception_handler(void) {
@@ -59,16 +59,15 @@ void exception_handler(void) {
 
     int type = exception_type[i];
     char* name = exception_name[i];
-    
-    // TODO: Handle this
+
     if (type == 0) {
         return;
     } else if (type == 1) {
-        return;
+        return; // handle this
     } else if (type == 3) {
-        return;
+        return; // handle this
     } else if (type == 4) {
-        return;
+        return; // handle this
     } else if (type == 5) {
         return;
     } else {

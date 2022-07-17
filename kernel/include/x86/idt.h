@@ -18,5 +18,7 @@ typedef struct {
 } __attribute__((packed)) idtr_t;
 
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags);
-void idt_init(void);
 void idt_free_descriptor(uint8_t vector);
+
+void set_idt(void);
+void install_cpu_exceptions(void);
