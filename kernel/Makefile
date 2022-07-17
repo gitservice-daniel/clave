@@ -23,5 +23,5 @@ $(x86_ASM_OBJECT_FILES): build/arch/x86/%_asm.o : arch/x86/%.asm
 
 .PHONY: build-x86-kernel
 build-x86-kernel: $(KERNEL_OBJECT_FILES) $(x86_OBJECT_FILES)
-	@ mkdir -p dist/x86
-	@ i686-elf-gcc -ffreestanding -O2 -nostdlib -lgcc -T arch/x86/linker.ld -o dist/x86/kernel.bin $(KERNEL_OBJECT_FILES) $(x86_OBJECT_FILES)
+	@ mkdir -p ../dist/x86
+	@ i686-elf-gcc -ffreestanding -O2 -nostdlib -lgcc -T arch/x86/linker.ld -o ../dist/x86/kernel.bin $(KERNEL_OBJECT_FILES) $(x86_OBJECT_FILES)

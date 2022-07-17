@@ -1,7 +1,10 @@
 #include <x86/isr.h>
+#include <x86/idt.h>
 #include <kernel/vga.h>
 #include <kernel/panic.h>
 #include <kernel/string.h>
+
+extern void* isr_stub_table[];
 
 char* exception_name[] = {
     "Division By Zero",
@@ -72,5 +75,12 @@ void exception_handler(void) {
         return;
     } else {
         panic("CPU Exception", name);
+    }
+}
+
+void install_cpu_exceptions(void) {
+    for (uint8_t vector = 0; vector < 32; vector++) {
+        idt_set_descriptor(vector, isr_stub_table[vector], 0x8e);
+        vectors[vector] = true;
     }
 }

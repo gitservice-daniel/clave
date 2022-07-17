@@ -3,9 +3,9 @@ build-x86:
 	@ mkdir -p iso_root/boot/grub
 	@ mkdir -p dist/x86
 	@ cp grub.cfg iso_root/boot/grub/grub.cfg
-	@ cp kernel/dist/x86/kernel.bin iso_root/boot/kernel.bin
+	@ cp dist/x86/kernel.bin iso_root/boot/kernel.bin
 	@ grub-mkrescue iso_root -o dist/x86/clave.iso
 	@ rm -rf iso_root
 
 clean:
-	@ rm -rf dist iso_root kernel/build kernel/dist
+	@ rm -rf dist iso_root kernel/build

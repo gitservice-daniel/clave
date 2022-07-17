@@ -1,13 +1,6 @@
 #include <x86/idt.h>
 #include <stdbool.h>
 
-static idt_entry_t idt[MAX_IDT_ENTRIES];
-static idtr_t idtr;
-
-extern void* isr_stub_table[];
-
-static bool vectors[MAX_IDT_ENTRIES];
-
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags) {
     idt_entry_t* descriptor = &idt[vector];
 
@@ -21,13 +14,6 @@ void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags) {
 void idt_free_descriptor(uint8_t vector) {
     idt_set_descriptor(vector, 0, 0);
     vectors[vector] = false;
-}
-
-void install_cpu_exceptions(void) {
-    for (uint8_t vector = 0; vector < 32; vector++) {
-        idt_set_descriptor(vector, isr_stub_table[vector], 0x8e);
-        vectors[vector] = true;
-    }
 }
 
 void set_idt(void) {
