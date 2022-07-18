@@ -1,10 +1,9 @@
-#include <kernel/vga.h>
+#include <kernel/output.h>
 #include <kernel/interrupt.h>
 
 void kmain(void) {
-    vga_clear();
-    enable_cursor(12, 14);
-
+    clear();
+    
     prepare_interrupts();
     
     printf("Hello %s", "World!");

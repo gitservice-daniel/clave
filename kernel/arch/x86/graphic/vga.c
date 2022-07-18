@@ -1,5 +1,4 @@
-#include <kernel/vga.h>
-#include <kernel/lib/vfprintf.h>
+#include <x86/vga.h>
 #include <x86/ports.h>
 
 #define NUM_COLS 80
@@ -36,7 +35,7 @@ void vga_clear() {
     col = 0;
     row = 0;
 
-    update_cursor(col, row);
+    vga_update_cursor(col, row);
 }
 
 void newline() {
@@ -57,7 +56,7 @@ void newline() {
     clear_row(NUM_ROWS - 1);
 }
 
-void printc(char character) {
+void vga_printc(char character) {
     if (character == '\n') {
         newline();
         return;
@@ -72,57 +71,24 @@ void printc(char character) {
 
     col++;
 
-    update_cursor(col, row);
+    vga_update_cursor(col, row);
 }
 
-void print_int(int number) {
-    char str[1024];
-    itoa(number, str);
-    print(str);
-
-    for (int i = 0; i < strlen(str); i++) {
-        str[i] = '\0';
-    }
-}
-
-void print_hex(int number) {
-    char str[1024];
-    htoa(number, str);
-    print(str);
-
-    for (int i = 0; i < strlen(str); i++) {
-        str[i] = '\0';
-    }
-}
-
-void print(char* str) {
+void vga_print(char* str) {
     for (size_t i = 0; 1; i++) {
         char character = (uint8_t) str[i];
 
         if (character == '\0') return;
 
-        printc(character);
+        vga_printc(character);
     }
-}
-
-void printf(const char* fmt, ...) {
-
-	va_list args;
-	va_start(args, fmt);
-
-	char buf[1024] = {0};
-
-    vfprintf(fmt, args, buf);
-
-	va_end(args);
-    print(buf);
 }
 
 void vga_set_color(uint8_t foreground, uint8_t background) {
     color = foreground | background << 4;
 }
 
-void enable_cursor(uint8_t cursor_start, uint8_t cursor_end) {
+void vga_enable_cursor(uint8_t cursor_start, uint8_t cursor_end) {
 	outb(0x3D4, 0x0A);
 	outb(0x3D5, (inb(0x3D5) & 0xC0) | cursor_start);
  
@@ -130,12 +96,12 @@ void enable_cursor(uint8_t cursor_start, uint8_t cursor_end) {
 	outb(0x3D5, (inb(0x3D5) & 0xE0) | cursor_end);
 }
 
-void disable_cursor() {
+void vga_disable_cursor() {
 	outb(0x3D4, 0x0A);
 	outb(0x3D5, 0x20);
 }
 
-void update_cursor(int x, int y) {
+void vga_update_cursor(int x, int y) {
 	uint16_t pos = y * NUM_COLS + x;
  
 	outb(0x3D4, 0x0F);
