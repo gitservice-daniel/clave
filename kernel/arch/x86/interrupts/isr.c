@@ -2,7 +2,7 @@
 #include <x86/idt.h>
 #include <kernel/vga.h>
 #include <kernel/panic.h>
-#include <kernel/string.h>
+#include <kernel/lib/string.h>
 
 extern void* isr_stub_table[];
 

@@ -1,4 +1,4 @@
-#include <kernel/memory.h>
+#include <kernel/lib/memory.h>
 
 void memcpy(uint8_t* source, uint8_t* dest, int nbytes) {
     int i;

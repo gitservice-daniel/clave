@@ -1,4 +1,4 @@
-#include <kernel/string.h>
+#include <kernel/lib/string.h>
 #include <stdint.h>
 
 void itoa(int n, char str[]) {

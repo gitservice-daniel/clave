@@ -1,5 +1,5 @@
 #include <kernel/lib/vfprintf.h>
-#include <kernel/string.h>
+#include <kernel/lib/string.h>
 
 /**
   * Paramters of vfprinf()
