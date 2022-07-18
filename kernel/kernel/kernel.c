@@ -6,6 +6,6 @@ void kmain(void) {
     enable_cursor(12, 14);
 
     prepare_interrupts();
-
-    printf("Hello %s!", "World");
+    
+    printf("Hello %s", "World!");
 }
