@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build buildenv/i686 --file Dockerfile --tag my-image-name:$(date +%s)
+      run: cd buildenv && docker build i686 --file Dockerfile --tag my-image-name:$(date +%s)
