@@ -10,7 +10,7 @@
 #define STDERR VGAOUT
 
 void print(char* buffer) {
-    fprint(STDIN, buffer);
+    fprint(STDOUT, buffer);
 }
 
 void printf(const char* fmt, ...) {
