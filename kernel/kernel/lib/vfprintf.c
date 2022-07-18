@@ -1,5 +1,6 @@
 #include <kernel/lib/vfprintf.h>
 #include <kernel/lib/string.h>
+#include <stdbool.h>
 
 /**
   * Paramters of vfprinf()
@@ -13,16 +14,16 @@
   *    f            Decimal floating point, lowercase 392.65                        392.65
   *    F            Decimal floating point, uppercase 392.65                        392.65
   *    e            Scientific notation (mantissa/exponent), lowercase              3.9265e+2    
-  *    E          	Scientific notation (mantissa/exponent), uppercase              3.9265E+2
-  *    g          	Use the shortest representation: %e or %f                       392.65
+  *    E            Scientific notation (mantissa/exponent), uppercase              3.9265E+2
+  *    g            Use the shortest representation: %e or %f                       392.65
   *    G            Use the shortest representation: %E or %F                       392.65
-  *    a        	Hexadecimal floating point, lowercase                   	    -0xc.90fep-2
-  *    A       	    Hexadecimal floating point, uppercase                   	    -0xc.90fep-2
+  *    a            Hexadecimal floating point, lowercase                   	    -0xc.90fep-2
+  *    A            Hexadecimal floating point, uppercase                   	    -0xc.90fep-2
   *    c            Character                                                        'C'
   *    s      	    String of characters                                             "CLAVE"
   *    p      	    Pointer address                                                  0xb8000
   *    n      	    Nothing printed                                                  
-  *    %          	Escape of '%'                                                    %
+  *    %            Escape of '%'                                                    %
   *
   *    TODO: Implement all specifiers and implement flags, width, length and precision
   */
@@ -31,9 +32,43 @@ void vfprintf(const char* fmt, va_list args, char* buffer) {
     char c;
     int n;
 
+    bool left_justify = false;
+    bool plus_sign = false;
+    bool alt_form = false;
+    bool space_no_sign = false;
+    bool zero_pad = false;
+    bool ext_break = false;
+
 	for (int i = 0; fmt[i]; i++) {
         if (fmt[i] == '%') {
             i++;
+
+            switch (fmt[i]) {
+                case '-':
+                    left_justify = true;
+                    i++;
+                    break;
+                case '+':
+                    plus_sign = true;
+                    i++;
+                    break;
+                case '#':
+                    alt_form = true;
+                    i++;
+                    break;
+                case ' ':
+                    space_no_sign = true;
+                    i++;
+                    break;
+                case '0':
+                    zeropad = true;
+                    i++;
+                    break;
+                default:
+                    ext_break = true;
+                    break;
+            }
+
             switch (fmt[i]) {
                 case 'i':
                 case 'd':
