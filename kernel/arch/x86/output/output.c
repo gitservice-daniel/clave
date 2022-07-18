@@ -3,8 +3,14 @@
 #include <x86/vga.h>
 #include <stdarg.h>
 
+#define VGAOUT 0
+
+#define STDIN  VGAOUT
+#define STDOUT VGAOUT
+#define STDERR VGAOUT
+
 void print(char* buffer) {
-    fprint(0, buffer);
+    fprint(STDIN, buffer);
 }
 
 void printf(const char* fmt, ...) {
@@ -21,8 +27,9 @@ void printf(const char* fmt, ...) {
 
 void fprint(int stream, char* buffer) {
     switch (stream) {
-        case 0:
+        case VGAOUT:
             vga_print(buffer);
+            break;
         default:
             break;
     }
