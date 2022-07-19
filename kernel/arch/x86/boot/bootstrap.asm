@@ -23,7 +23,6 @@ fix_cs:
 
     call kmain
 
-    cli
     hlt
     jmp $
 
